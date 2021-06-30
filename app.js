@@ -10,15 +10,6 @@ const PARAMS = {
   textSize: 100,
 };
 
-// get command line arguments
-const cmdArgs = process.argv.slice(2);
-const greetingText = cmdArgs[0] ? cmdArgs[0] : "Happy birthday!";
-const who = cmdArgs[1] ? cmdArgs[1] : "Indika";
-
-// catch any errors
-init(cmdArgs).catch((err) => {
-  logger.error("Application Error : ",err.message);
-});
 
 /**
  * main method
@@ -28,12 +19,13 @@ async function init() {
 
   logger.info(`greetingText : ${greetingText} | who : ${who}`);
   const newImageName = `greeting-card-${new Date().getTime()}.jpg`;   // new image name
-  const firstImage = await generateCatImage(greetingText);              // get first random cat image with text
-  const secondImage = await generateCatImage(who);                      // get second random cat image with text
-  const newImage = await blendImages(firstImage, secondImage);
+  const firstImage = await generateCatImage(greetingText);            // get first random cat image with text
+  const secondImage = await generateCatImage(who);                   // get second random cat image with text
+  const newImage = await blendImages(firstImage, secondImage);      // Can not use Promise.all because may be first and second image swap
   await newImage.writeAsync(newImageName);
   logger.info(`Generated cat card to ${newImageName}`);
 }
+
 
 /**
  * call CATAAS api (https://cataas.com/)
@@ -62,9 +54,24 @@ async function generateCatImage(text) {
  */
 async function blendImages(firstImage, secondImage) {
   const leftImg = await Jimp.read(firstImage);
-  const rightImg = await Jimp.read(secondImage);
+  const rightImg = await Jimp.read(secondImage);      // Can not use Promise.all because may be first and second image swap
   const container = new Jimp(PARAMS.width * 2, PARAMS.height);
   container.blit(leftImg, 0, 0);
   container.blit(rightImg, rightImg.getWidth(), 0);
   return container;
 }
+
+
+// get command line arguments
+const cmdArgs = process.argv.slice(2);
+const greetingText = cmdArgs[0] ? cmdArgs[0] : "Happy birthday!";
+const who = cmdArgs[1] ? cmdArgs[1] : "Indika";
+
+
+/**
+ * Starting point
+ *
+ */
+init(cmdArgs).catch((err) => {
+  logger.error("Application Error : ",err.message);
+});
