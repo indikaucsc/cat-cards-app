@@ -1,0 +1,24 @@
+{
+  "name": "cat-cards",
+  "version": "1.0.0",
+  "description": "connect to cataas.com and get two images then create new combined single image",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Indika",
+  "license": "",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bunyan": "^1.8.15",
+    "jimp": "^0.16.1",
+    "minimist": "^1.2.5",
+    "minimist-options": "^4.1.0",
+    "moment": "^2.29.1",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "prettier": "2.3.0"
+  }
+}
