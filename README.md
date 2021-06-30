@@ -47,6 +47,7 @@ Use code formatting 
 
 ### Maintainability
 Considering the maintenance and future updates I have choose  to axio 
+Added bunyan logger
 
 ### Performance
 Callback functions changes to Async/Await
