@@ -38,7 +38,21 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
     
     
 
+## Conclusion 
 
+### Simplicity.
+As per the requirement add two customer text inputs(greeting text and name) and remove unwanted user input,
+@mapbox/blend npm package  changes to jimp because blend package has not been maintained for several years and also has issues compiling time,
+Use code formatting 
+
+### Maintainability
+Considering the maintenance and future updates I have choose  to axio 
+
+### Performance
+Callback functions changes to Async/Await
+
+### Fixed API call param
+The original code had '&color' + it is wrong  , it should be '&color=' +
 
 
 
