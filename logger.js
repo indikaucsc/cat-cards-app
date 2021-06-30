@@ -3,7 +3,7 @@ const moment = require('moment');
 
 const log = bunyan.createLogger({
   time:  moment().format("YYYY-MM-DD HH:mm:ss.SSSS"),
-  name: "lucky1-sms",
+  name: "cat-cards",
   src: true,
   env: "dev",
   streams: [
